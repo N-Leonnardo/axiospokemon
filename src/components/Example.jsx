@@ -1,6 +1,8 @@
 
 import React ,{useState} from "react";
 import DisplayPokemon from "./DisplayPokemon";
+import axios from 'axios'
+
 
 const Example = (props) => {
     const [err, setErr] = useState("");
@@ -16,9 +18,18 @@ const Example = (props) => {
             })
     }
 
+    const fetchPokemonAxios =() =>{
+        axios.get('https://pokeapi.co/api/v2/pokemon')
+        .then(response=>{
+            setPokemon(response.data)
+        })
+        
+    }
+
+    
     return (
         <div>
-            <button onClick={fetchPokemonThen}> Click here</button>
+            <button onClick={fetchPokemonAxios}> Click here</button>
             {
                 pokemon?
                 (<DisplayPokemon pokemon = {pokemon} />):
